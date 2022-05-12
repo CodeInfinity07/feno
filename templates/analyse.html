@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}">
+    <link rel="stylesheet" href="https://use.typekit.net/niy8azw.css">
+{% endblock %}
+
+
+{% block content %}
+    <div class="loading_img">
+        <img src="{{ url_for('static', filename='images/spinner-2.gif') }}" alt="Wait"/>
+    </div>
+    <div class="orange-flex">
+        <p class="first-column">Comparte en Instagram tu radiografía <br class="none ">etiquetando <span>@somos.fenomenos</span></p>
+        <a  href="https://www.instagram.com/somos.fenomenos/?igshid=YmMyMTA2M2Y=" class="second-column" style="font-family: 'ft88regular'">PROYECTO</a>
+    </div>
+
+    <div class="container">
+
+        <h1 class="r-title">Así luce tu conversación con:</h1>
+        <p class="names">{{ data.get('name1').get('name') }} & {{ data.get('name2').get('name') }}</p>
+        {% if data.get('emojis_count') | length > 0 %}
+            <div class="card" id="emojis_count_main" style="10px">
+                <div>
+                    {% for emoji in data.get('emojis_count') %}
+                        {{ emoji }}
+                    {% endfor %}
+                </div>
+
+                <img src="{{ url_for('static', filename='images/card-bottom-logo.png') }}">
+            </div>
+        {% else %}
+            <p>No hay emojis</p>
+        {% endif %}
+
+        <div class="text-container">
+            <p class="textp">
+                {{ data.get('name1').get('name') }} y {{ data.get('name2').get('name') }} han enviado:
+                {{ data.get('total_message') }} cantidad de mensajes
+            </p>
+            <br><br>
+            <p class="textp">
+                Todos los días recibes y envías muchos mensajes, si enviaras un mensaje cada hora está conversación lleva
+                <span class="purple">
+                {{ data.get('total_days') }} </span>
+                días ¿Qué piensas?
+            </p>
+
+            <div class="hero-flex" style="padding: 60px 0;">
+                <p class="textp">
+                    Su
+                    <span class="purple">hora preferida </span>
+                    para hablar es a las
+                    <span> {{ data.get('prefer_time')[0] }} - {{ data.get('prefer_time')[1] }} </span>
+                </p>
+
+                <img class="barchat" src="{{ data.get('img_str') }}" class="responsive">
+
+            </div>
+        </div>
+
+        <div class="keyword-container">
+
+            <div class="keywords">
+                <h4>Compartieron algunas de estas <span class="purple">palabras:</span></h4>
+                                <ul>
+                                   {% for item in data.get('share_word') %}
+                                      <li>
+                                           {{ item.get('word') }}
+                                          <span class="times"> # {{ item.get('count') }}</span>
+                                      </li>
+                                  {% endfor %}
+                             </ul>
+            </div>
+        </div>
+        <form action="{{ url_for('index') }}" method="GET">
+            <button type="submit" style="margin-top: 25px;">Leer Otra Conversación</button>
+        </form>
+    </div>
+
+
+    <footer>
+
+        <div class="footer-logo">
+            <img src="{{ url_for('static', filename='images/footer-logo.png') }}">
+            
+        </div>
+
+        <div class="emails">
+            <p>Contacto</p>
+            <a>Kamila.jimenez@udem.edu</a>
+             <a>Roberta.gonzalezg@udem.edu</a>
+        </div>
+
+    </footer>
+{% endblock %}

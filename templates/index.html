@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+    <link rel="stylesheet" href="https://use.typekit.net/niy8azw.css">
+{% endblock %}
+
+{% block content %}
+    <div class="loading_img">
+        <img src="{{ url_for('static', filename='images/spinner-2.gif') }}" alt="Wait"/>
+    </div>
+    <div class="container">
+        <div class="orange-flex">
+            <p class="first-column">Comparte en Instagram tu radiografía <br class="none ">etiquetando <span>@somos.fenomenos</span></p>
+            <a href="https://www.instagram.com/somos.fenomenos/?igshid=YmMyMTA2M2Y=" class="second-column">PROYECTO</a>
+        </div>
+
+        <div class="hero-flex">
+
+            <h1 class="title"><span class="somos">Somos</span> <span class="logo-font">fenómenos</span><span class="r">&reg;</span> <span class="italic" >es un proyecto que busca</span><br> <span class="logo-font">relatar nuestra vida</span> <span class="italic">de forma</span> <span class="logo-font">gráfica.</span></h1>
+            <img class="tarjeta" src="{{ url_for('static', filename='images/tarjeta.png') }}">
+            <marquee direction="left" class="marqueeclass" scrollamount="20">
+                <h1 style="font-size: 6rem; font-family: kompani; font-weight: 400; ">Curiosidad por conocer</h1>
+            </marquee>
+
+        </div>
+        <h4 class="explain-title">Te Explicamos</h4>
+
+        <div class="explain-container">
+            <div class="primera-columna">
+                 <div class="texto">
+                     <span>1</span>
+                     <p>En tu celular entra a tu aplicación de <span class="bold">WhatsApp</span> y elige un chat (no grupos). Teniendo el chat elegido, entra a la información del contacto.</p>
+                 </div>
+                 <div class="texto">
+                     <span>2</span>
+                     <p>Dentro de la información de la conversación, busca la opción <span class="bold">"Exportar Chat" / "Export Chart"</span> y elige la opción: <span class="bold">"Sin Archivos"/"Without Media".</span></p>
+                 </div>
+            </div>
+            <div class="segunda-columna">
+             <div class="texto">
+                 <span>3</span>
+                 <p>Elige descargar tu chat directo en <span class="bold">"Archivos" / "Files" </span>(en celular). Una vez descargado, entra a archivos y dale click al <span class="bold"> ".zip" </span>para abrirlo, este generará un archivo que se llama<span class="bold"> "_chat"</span></p>
+             </div>
+             <div class="texto">
+                 <span>4</span>
+                 <p>Entra de nuevo a esta página y sube tu <span class="bold">"_chat"</span> en el botón de la parte de abajo que dice <span class="bold">"Choose File".</span></p>
+             </div>
+             <div class="texto">
+                 <span>5</span>
+                 <p>¡Listo! Descubre tu radiografía de whatsapp y no olvides compartirla en Instagram etiquetándonos <span class="bold">@somos.fenomenos.</span></p>
+             </div>
+            </div>
+        </div>
+
+        <form action="{{ url_for('result') }}" enctype="multipart/form-data" method="POST">
+            <input type="file" accept=".txt" name="input_file" required><br>
+             <p class="descripcion">Descubre tu radiografía de WhatsApp con la persona que más quieres:</p><br>
+            <br>
+            <button type="submit">Leer Conversación</button>
+        </form>
+
+        <footer>
+
+            <div class="footer-logo">
+                <img src="{{ url_for('static', filename='images/footer-logo.png') }}">
+                
+            </div>
+
+            <div class="emails">
+                <p>Contacto</p>
+                <a>Kamila.jimenez@udem.edu</a>
+                 <a>Roberta.gonzalezg@udem.edu</a>
+            </div>
+
+        </footer>
+
+    </div>
+    
+{% endblock %}
